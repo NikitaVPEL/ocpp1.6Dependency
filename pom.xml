@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vst.ocpp</groupId>
-	<artifactId>OCPP-1.6</artifactId>
+	<artifactId>OCPP1.6</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>OCPP-1.6</name>
+	<name>OCPP1.6</name>
 	<description>OCPP dependency</description>
 	<properties>
 		<java.version>17</java.version>
