@@ -8,11 +8,12 @@ import com.vst.ocpp.exception.InvalidLengthException;
 import com.vst.ocpp.util.Utils;
 
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/** Sent by the the Central System to the Charge Point. */
 @NoArgsConstructor
+@Slf4j
 public class GetConfigurationRequest {
-
-	Utils utils = new Utils();
 
 	private static final int KEY_MAX_LENGTH = 50;
 
@@ -22,10 +23,20 @@ public class GetConfigurationRequest {
 		setKey(key);
 	}
 
+	 /**
+	   * List of keys for which the configuration value is requested.
+	   *
+	   * @return Array of key names.
+	   */
 	public String[] getKey() {
 		return key;
 	}
 
+	  /**
+	   * Optional. List of keys for which the configuration value is requested.
+	   *
+	   * @param key Array of Strings, max 50 characters each, case insensitive.
+	   */
 	public JsonArray setKey(String[] key) {
 
 		validateKeys(key);
@@ -45,14 +56,19 @@ public class GetConfigurationRequest {
 
 	private void validateKeys(String[] key) {
 		for (String keyString : key) {
-			if (!utils.validate(keyString, KEY_MAX_LENGTH)) {
-				throw new InvalidLengthException(keyString.length(), utils.createErrorMessage(KEY_MAX_LENGTH));
+			if (!Utils.validate(keyString, KEY_MAX_LENGTH)) {
+				throw new InvalidLengthException(keyString.length(), Utils.createErrorMessage(KEY_MAX_LENGTH));
 			}
 		}
 		
 		
 	}
 
+	/**
+	 * use this method to generate json string of {@link GetConfigurationRequest}
+	 * 
+	 * @return string of {@link GetConfigurationRequest}
+	 */
 	public String toJson() {
 
 		int messageType = 2;
@@ -69,6 +85,7 @@ public class GetConfigurationRequest {
 		jsonArray.add(jsonObject);
 
 		String jsonString = jsonArray.toString();
+		log.debug(jsonString);
 		return jsonString;
 	}
 

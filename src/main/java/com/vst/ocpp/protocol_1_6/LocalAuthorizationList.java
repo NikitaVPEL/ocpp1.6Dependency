@@ -1,6 +1,8 @@
 package com.vst.ocpp.protocol_1_6;
 
 import com.google.gson.JsonObject;
+import com.vst.ocpp.exception.InvalidLengthException;
+import com.vst.ocpp.util.Utils;
 
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,11 @@ public class LocalAuthorizationList {
 	private String idTag;
 	private IdTagInfo idTagInfo;
 
+	/**
+	 * Handle required fields.
+	 *
+	 * @param idTag String, the idTag, see {@link #setIdTag(String)}
+	 */
 	public LocalAuthorizationList(String idTag) {
 		setIdTag(idTag);
 	}
@@ -19,11 +26,24 @@ public class LocalAuthorizationList {
 		setIdTagInfo(idTagInfo);
 	}
 
+	/**
+	 * The identifier to which this authorization applies
+	 *
+	 * @return String the idTag
+	 */
 	public String getIdTag() {
 		return idTag;
 	}
 
+	/**
+	 * Required. The identifier to which this authorization applies
+	 *
+	 * @param idTag String, the idTag
+	 */
 	public void setIdTag(String idTag) {
+		if (!Utils.validate(idTag, 20)) {
+			throw new InvalidLengthException(idTag.length(), Utils.createErrorMessage(20));
+		}
 		this.idTag = idTag;
 	}
 

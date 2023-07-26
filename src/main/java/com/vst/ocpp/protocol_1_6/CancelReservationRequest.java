@@ -1,30 +1,52 @@
 package com.vst.ocpp.protocol_1_6;
 
-import java.util.Random;
 import java.util.UUID;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class CancelReservationRequest {
-	
-	Random random = new Random();
-	StringBuilder randomStringBuilder = new StringBuilder();
-	
-	  private Integer reservationId;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/** Sent by the Central System to the Charge Point. */
+@Slf4j
+@NoArgsConstructor
+public class CancelReservationRequest {
+
+	private Integer reservationId;
+
+	/**
+	 * Handle required fields.
+	 *
+	 * @param reservationId Integer, id of the reservation, see
+	 *                      {@link #setReservationId(Integer)}
+	 */
 	public CancelReservationRequest(Integer reservationId) {
 		setReservationId(reservationId);
 	}
 
+	/**
+	 * Id of the reservation to cancel.
+	 *
+	 * @return Integer, id of the reservation.
+	 */
 	public Integer getReservationId() {
 		return reservationId;
 	}
 
+	/**
+	 * Required. Id of the reservation to cancel.
+	 *
+	 * @param reservationId Integer, id of the reservation.
+	 */
 	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}
-	  
+
+	/**
+	 * use this method to generate json string of CancelReservationRequest
+	 * 
+	 */
 	public String toJson() {
 
 		int messageType = 2;
@@ -40,8 +62,8 @@ public class CancelReservationRequest {
 		jsonArray.add(jsonObject);
 
 		String jsonString = jsonArray.toString();
+		log.debug(jsonString);
 		return jsonString;
 	}
-	  
 
 }

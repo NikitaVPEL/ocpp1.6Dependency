@@ -1,25 +1,38 @@
 package com.vst.ocpp.protocol_1_6;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZonedDateTime;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
+@NoArgsConstructor
+@Slf4j
 public class HeartbeatResponse {
 
-	private LocalDateTime dateTime;
+	private ZonedDateTime dateTime;
 	private String messageIdKey;
 
-	public HeartbeatResponse(LocalDateTime dateTime, String messageIdKey) {
+	/**
+	 * Handle required fields.
+	 *
+	 * @param currentTime ZonedDateTime, current time, see
+	 *                    {@link #setCurrentTime(ZonedDateTime)}
+	 */
+	public HeartbeatResponse(ZonedDateTime dateTime, String messageIdKey) {
 		setDateTime(dateTime);
 		setMessageIdKey(messageIdKey);
 	}
 
+	/**
+	 * use this method to generate json string of {@link HeartbeatResponse}
+	 * 
+	 * @return string of {@link HeartbeatResponse}
+	 */
 	public String toJson() {
 
 		int messageType = 3;
@@ -33,6 +46,7 @@ public class HeartbeatResponse {
 		jsonArray.add(jsonObject);
 
 		String jsonString = jsonArray.toString();
+		log.debug(jsonString);
 		return jsonString;
 	}
 

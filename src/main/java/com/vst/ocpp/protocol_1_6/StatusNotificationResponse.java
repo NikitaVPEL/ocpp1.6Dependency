@@ -2,10 +2,20 @@ package com.vst.ocpp.protocol_1_6;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.vst.ocpp.testprotocol_1_6.StatusNotificationRequest;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Sent by the Central System to the Charge Point in response to a
+ * {@link StatusNotificationRequest}.
+ *
+ * @see StatusNotificationRequest
+ */
+@Slf4j
+@NoArgsConstructor
 @Data
 public class StatusNotificationResponse {
 
@@ -15,7 +25,12 @@ public class StatusNotificationResponse {
 		setMessageIdKey(messageIdKey);
 	}
 
-	
+
+	/**
+	 * use this method to generate json string
+	 * 
+	 * @return string of {@link StatusNotificationResponse}
+	 */
 	public String toJson() {
 
 		int messageType = 3;
@@ -27,6 +42,7 @@ public class StatusNotificationResponse {
 		jsonArray.add(jsonObject);
 
 		String jsonString = jsonArray.toString();
+		log.debug(jsonString);
 		return jsonString;
 	}
 

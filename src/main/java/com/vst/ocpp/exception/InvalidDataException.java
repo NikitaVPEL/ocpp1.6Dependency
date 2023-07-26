@@ -1,8 +1,9 @@
 package com.vst.ocpp.exception;
 
+/** Exception used when validating fields. */
 public class InvalidDataException extends RuntimeException {
 
-//	private static final long serialVersionUID = 7252998252271168011L;
+	private static final long serialVersionUID = 7252998252271168011L;
 
 	private static final String EXCEPTION_MESSAGE_TEMPLATE = "Validation failed due to - Reason: { %s }. Current Value: [%s]";
 
