@@ -101,7 +101,11 @@ import com.vst.ocpp.testprotocol_1_6.UnlockStatusEnum;
 import com.vst.ocpp.testprotocol_1_6.UpdateFirmwareResponse;
 import com.vst.ocpp.testprotocol_1_6.UpdateStatusEnum;
 import com.vst.ocpp.testprotocol_1_6.ValueFormatEnum;
-
+/**
+ * 
+ * @author nikit
+ *for the testing purpose
+ */
 @RestController
 public class ControllerClass {
 
