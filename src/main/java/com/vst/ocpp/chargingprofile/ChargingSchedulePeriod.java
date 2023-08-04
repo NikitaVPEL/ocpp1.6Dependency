@@ -1,13 +1,7 @@
 package com.vst.ocpp.chargingprofile;
 
-import java.time.format.DateTimeFormatter;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor

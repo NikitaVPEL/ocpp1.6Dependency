@@ -1,7 +1,6 @@
 package com.vst.ocpp.exception;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
 

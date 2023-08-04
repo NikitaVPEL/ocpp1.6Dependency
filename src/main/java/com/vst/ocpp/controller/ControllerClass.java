@@ -1,6 +1,5 @@
 package com.vst.ocpp.controller;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -512,10 +511,12 @@ public class ControllerClass {
 	@GetMapping("/sendLocalListRequest")
 	public String sendLocalList() {
 
-		LocalAuthorizationList[] localAuthorizationList = null;
+		LocalAuthorizationList[] localAuthorizationList = new LocalAuthorizationList[3] ;
 
 		LocalAuthorizationList localAuthorizationList1 = new LocalAuthorizationList("12",
 				new IdTagInfo(ZonedDateTime.now(), "12", AuthorizationStatus.Accepted));
+		
+		localAuthorizationList[0] = localAuthorizationList1;
 
 		SendLocalListRequest sendLocalListRequest = new SendLocalListRequest(12, localAuthorizationList,
 				UpdateType.Differential);
